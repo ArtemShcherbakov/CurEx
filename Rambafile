@@ -1,0 +1,33 @@
+### Headers settings
+company: BLANC
+
+### Xcode project settings
+project_name: CurEx
+xcodeproj_path: CurEx.xcodeproj
+
+### Code generation settings section
+# The main project target name
+project_target: CurEx
+
+# The file path for new modules
+project_file_path: CurEx/Source/Modules
+
+# The Xcode group path to new modules
+project_group_path: CurEx/Source/Modules
+
+### Tests generation settings section
+# The tests target name
+test_target: CurExTests
+
+# The file path for new tests
+test_file_path: CurEx/Source/Tests
+
+# The Xcode group path to new tests
+test_group_path: CurEx/Source/Tests
+
+### Templates
+catalogs:
+- 'https://github.com/strongself/generamba-catalog'
+- 'https://github.com/Destplay/Templates-iOS-for-Generamba' 
+templates:
+- {name: original_clean_architecture}

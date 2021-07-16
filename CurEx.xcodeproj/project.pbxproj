@@ -1,0 +1,676 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03FB101B664E441815BC236A /* CurExNetworkServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 056FE7D339140F7C5C33DCA8 /* CurExNetworkServices.swift */; };
+		0F07AB1481582B8FB5B90F52 /* CurExInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0152044B32A0F1969ED117B /* CurExInteractor.swift */; };
+		43D57F31C3249028649CF396 /* CurEx.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47154952AAE4535FAD743191 /* CurEx.storyboard */; };
+		48A8A01120A9BA39D25E28B1 /* CurExPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4C79BDC3BBFF14920A1401F /* CurExPresenter.swift */; };
+		6F10687BECE55F8BA3F9CBC5 /* CurExView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9B1E22437044FF0731FE1ECD /* CurExView.swift */; };
+		7E3DF56126A1D30D00BB22FB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3DF56026A1D30D00BB22FB /* AppDelegate.swift */; };
+		7E3DF56A26A1D34600BB22FB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DF56926A1D34600BB22FB /* Assets.xcassets */; };
+		7E3DF56D26A1D34600BB22FB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7E3DF56B26A1D34600BB22FB /* LaunchScreen.storyboard */; };
+		7E3DF57826A1D34C00BB22FB /* CurExTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3DF57726A1D34C00BB22FB /* CurExTests.swift */; };
+		7E3DF58326A1D34C00BB22FB /* CurExUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E3DF58226A1D34C00BB22FB /* CurExUITests.swift */; };
+		86FC38C49DE08BDB59326EA3 /* CurExConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2DA1016A176A5D5FEAE64B /* CurExConfigurator.swift */; };
+		BFE86A81890D62D57D117C01 /* CurExRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E03B04D3F3A34612819F013 /* CurExRepository.swift */; };
+		EDE25728DE2446A7B4BD50EE /* CurExMockServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = 810C7E53C1EE884A539F18F5 /* CurExMockServices.swift */; };
+		F17D25876AC81E0B8D32C777 /* CurExModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0AF6457B9C550CDB99902C40 /* CurExModel.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		7E3DF57426A1D34C00BB22FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3DF55526A1D30D00BB22FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E3DF55C26A1D30D00BB22FB;
+			remoteInfo = CurEx;
+		};
+		7E3DF57F26A1D34C00BB22FB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7E3DF55526A1D30D00BB22FB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7E3DF55C26A1D30D00BB22FB;
+			remoteInfo = CurEx;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		03E25DF28F9E7FBF2068E1BD /* CurExError.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = CurExError.json; sourceTree = "<group>"; };
+		056FE7D339140F7C5C33DCA8 /* CurExNetworkServices.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExNetworkServices.swift; sourceTree = "<group>"; };
+		0AF6457B9C550CDB99902C40 /* CurExModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExModel.swift; sourceTree = "<group>"; };
+		47154952AAE4535FAD743191 /* CurEx.storyboard */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = file.storyboard; path = CurEx.storyboard; sourceTree = "<group>"; };
+		4FE983818275A04BE1D425C7 /* CurExEmpty.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = CurExEmpty.json; sourceTree = "<group>"; };
+		693DF3868E7A492EF4E6CD31 /* CurExSuccess.json */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.json; path = CurExSuccess.json; sourceTree = "<group>"; };
+		7E3DF55D26A1D30D00BB22FB /* CurEx.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurEx.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E3DF56026A1D30D00BB22FB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7E3DF56926A1D34600BB22FB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		7E3DF56C26A1D34600BB22FB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		7E3DF56E26A1D34600BB22FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E3DF57326A1D34C00BB22FB /* CurExTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurExTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E3DF57726A1D34C00BB22FB /* CurExTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurExTests.swift; sourceTree = "<group>"; };
+		7E3DF57926A1D34C00BB22FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7E3DF57E26A1D34C00BB22FB /* CurExUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurExUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7E3DF58226A1D34C00BB22FB /* CurExUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurExUITests.swift; sourceTree = "<group>"; };
+		7E3DF58426A1D34C00BB22FB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		810C7E53C1EE884A539F18F5 /* CurExMockServices.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExMockServices.swift; sourceTree = "<group>"; };
+		9B1E22437044FF0731FE1ECD /* CurExView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExView.swift; sourceTree = "<group>"; };
+		9D2DA1016A176A5D5FEAE64B /* CurExConfigurator.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExConfigurator.swift; sourceTree = "<group>"; };
+		9E03B04D3F3A34612819F013 /* CurExRepository.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExRepository.swift; sourceTree = "<group>"; };
+		C0152044B32A0F1969ED117B /* CurExInteractor.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExInteractor.swift; sourceTree = "<group>"; };
+		E4C79BDC3BBFF14920A1401F /* CurExPresenter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = CurExPresenter.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		7E3DF55A26A1D30D00BB22FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF57026A1D34C00BB22FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF57B26A1D34C00BB22FB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		00640A5E4C30E9D21CF690BF /* CurEx */ = {
+			isa = PBXGroup;
+			children = (
+				04CF611BBAB99864D0DD70E9 /* Presentation */,
+				A3CDED0C95C26D00D88459BC /* Domain */,
+				E0C2B247E9F67C68AAD78596 /* Data */,
+			);
+			path = CurEx;
+			sourceTree = "<group>";
+		};
+		04CF611BBAB99864D0DD70E9 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				E4C79BDC3BBFF14920A1401F /* CurExPresenter.swift */,
+				9B1E22437044FF0731FE1ECD /* CurExView.swift */,
+				47154952AAE4535FAD743191 /* CurEx.storyboard */,
+			);
+			path = Presentation;
+			sourceTree = "<group>";
+		};
+		311B09DF4EEF64096E9A49A7 /* Mock */ = {
+			isa = PBXGroup;
+			children = (
+				693DF3868E7A492EF4E6CD31 /* CurExSuccess.json */,
+				4FE983818275A04BE1D425C7 /* CurExEmpty.json */,
+				03E25DF28F9E7FBF2068E1BD /* CurExError.json */,
+			);
+			path = Mock;
+			sourceTree = "<group>";
+		};
+		4895FDE346E4A40AB1507EFF /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				00640A5E4C30E9D21CF690BF /* CurEx */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		4BB53357B542E984B3C8756E /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				4895FDE346E4A40AB1507EFF /* Modules */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		7E3DF55426A1D30C00BB22FB = {
+			isa = PBXGroup;
+			children = (
+				7E3DF55F26A1D30D00BB22FB /* CurEx */,
+				7E3DF57626A1D34C00BB22FB /* CurExTests */,
+				7E3DF58126A1D34C00BB22FB /* CurExUITests */,
+				7E3DF55E26A1D30D00BB22FB /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		7E3DF55E26A1D30D00BB22FB /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7E3DF55D26A1D30D00BB22FB /* CurEx.app */,
+				7E3DF57326A1D34C00BB22FB /* CurExTests.xctest */,
+				7E3DF57E26A1D34C00BB22FB /* CurExUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		7E3DF55F26A1D30D00BB22FB /* CurEx */ = {
+			isa = PBXGroup;
+			children = (
+				7E3DF56026A1D30D00BB22FB /* AppDelegate.swift */,
+				7E3DF56926A1D34600BB22FB /* Assets.xcassets */,
+				7E3DF56B26A1D34600BB22FB /* LaunchScreen.storyboard */,
+				7E3DF56E26A1D34600BB22FB /* Info.plist */,
+				4BB53357B542E984B3C8756E /* Source */,
+			);
+			path = CurEx;
+			sourceTree = "<group>";
+		};
+		7E3DF57626A1D34C00BB22FB /* CurExTests */ = {
+			isa = PBXGroup;
+			children = (
+				7E3DF57726A1D34C00BB22FB /* CurExTests.swift */,
+				7E3DF57926A1D34C00BB22FB /* Info.plist */,
+			);
+			path = CurExTests;
+			sourceTree = "<group>";
+		};
+		7E3DF58126A1D34C00BB22FB /* CurExUITests */ = {
+			isa = PBXGroup;
+			children = (
+				7E3DF58226A1D34C00BB22FB /* CurExUITests.swift */,
+				7E3DF58426A1D34C00BB22FB /* Info.plist */,
+			);
+			path = CurExUITests;
+			sourceTree = "<group>";
+		};
+		A3CDED0C95C26D00D88459BC /* Domain */ = {
+			isa = PBXGroup;
+			children = (
+				0AF6457B9C550CDB99902C40 /* CurExModel.swift */,
+				9D2DA1016A176A5D5FEAE64B /* CurExConfigurator.swift */,
+				C0152044B32A0F1969ED117B /* CurExInteractor.swift */,
+			);
+			path = Domain;
+			sourceTree = "<group>";
+		};
+		E0C2B247E9F67C68AAD78596 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				311B09DF4EEF64096E9A49A7 /* Mock */,
+				9E03B04D3F3A34612819F013 /* CurExRepository.swift */,
+				056FE7D339140F7C5C33DCA8 /* CurExNetworkServices.swift */,
+				810C7E53C1EE884A539F18F5 /* CurExMockServices.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		7E3DF55C26A1D30D00BB22FB /* CurEx */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E3DF58726A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurEx" */;
+			buildPhases = (
+				7E3DF55926A1D30D00BB22FB /* Sources */,
+				7E3DF55A26A1D30D00BB22FB /* Frameworks */,
+				7E3DF55B26A1D30D00BB22FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CurEx;
+			productName = CurEx;
+			productReference = 7E3DF55D26A1D30D00BB22FB /* CurEx.app */;
+			productType = "com.apple.product-type.application";
+		};
+		7E3DF57226A1D34C00BB22FB /* CurExTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E3DF58A26A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurExTests" */;
+			buildPhases = (
+				7E3DF56F26A1D34C00BB22FB /* Sources */,
+				7E3DF57026A1D34C00BB22FB /* Frameworks */,
+				7E3DF57126A1D34C00BB22FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E3DF57526A1D34C00BB22FB /* PBXTargetDependency */,
+			);
+			name = CurExTests;
+			productName = CurExTests;
+			productReference = 7E3DF57326A1D34C00BB22FB /* CurExTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		7E3DF57D26A1D34C00BB22FB /* CurExUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7E3DF58D26A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurExUITests" */;
+			buildPhases = (
+				7E3DF57A26A1D34C00BB22FB /* Sources */,
+				7E3DF57B26A1D34C00BB22FB /* Frameworks */,
+				7E3DF57C26A1D34C00BB22FB /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7E3DF58026A1D34C00BB22FB /* PBXTargetDependency */,
+			);
+			name = CurExUITests;
+			productName = CurExUITests;
+			productReference = 7E3DF57E26A1D34C00BB22FB /* CurExUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		7E3DF55526A1D30D00BB22FB /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1250;
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					7E3DF55C26A1D30D00BB22FB = {
+						CreatedOnToolsVersion = 12.5.1;
+					};
+					7E3DF57226A1D34C00BB22FB = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 7E3DF55C26A1D30D00BB22FB;
+					};
+					7E3DF57D26A1D34C00BB22FB = {
+						CreatedOnToolsVersion = 12.5.1;
+						TestTargetID = 7E3DF55C26A1D30D00BB22FB;
+					};
+				};
+			};
+			buildConfigurationList = 7E3DF55826A1D30D00BB22FB /* Build configuration list for PBXProject "CurEx" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 7E3DF55426A1D30C00BB22FB;
+			productRefGroup = 7E3DF55E26A1D30D00BB22FB /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				7E3DF55C26A1D30D00BB22FB /* CurEx */,
+				7E3DF57226A1D34C00BB22FB /* CurExTests */,
+				7E3DF57D26A1D34C00BB22FB /* CurExUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		7E3DF55B26A1D30D00BB22FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3DF56D26A1D34600BB22FB /* LaunchScreen.storyboard in Resources */,
+				7E3DF56A26A1D34600BB22FB /* Assets.xcassets in Resources */,
+				43D57F31C3249028649CF396 /* CurEx.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF57126A1D34C00BB22FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF57C26A1D34C00BB22FB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		7E3DF55926A1D30D00BB22FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3DF56126A1D30D00BB22FB /* AppDelegate.swift in Sources */,
+				48A8A01120A9BA39D25E28B1 /* CurExPresenter.swift in Sources */,
+				6F10687BECE55F8BA3F9CBC5 /* CurExView.swift in Sources */,
+				F17D25876AC81E0B8D32C777 /* CurExModel.swift in Sources */,
+				86FC38C49DE08BDB59326EA3 /* CurExConfigurator.swift in Sources */,
+				0F07AB1481582B8FB5B90F52 /* CurExInteractor.swift in Sources */,
+				BFE86A81890D62D57D117C01 /* CurExRepository.swift in Sources */,
+				03FB101B664E441815BC236A /* CurExNetworkServices.swift in Sources */,
+				EDE25728DE2446A7B4BD50EE /* CurExMockServices.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF56F26A1D34C00BB22FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3DF57826A1D34C00BB22FB /* CurExTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7E3DF57A26A1D34C00BB22FB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7E3DF58326A1D34C00BB22FB /* CurExUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		7E3DF57526A1D34C00BB22FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E3DF55C26A1D30D00BB22FB /* CurEx */;
+			targetProxy = 7E3DF57426A1D34C00BB22FB /* PBXContainerItemProxy */;
+		};
+		7E3DF58026A1D34C00BB22FB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7E3DF55C26A1D30D00BB22FB /* CurEx */;
+			targetProxy = 7E3DF57F26A1D34C00BB22FB /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		7E3DF56B26A1D34600BB22FB /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				7E3DF56C26A1D34600BB22FB /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		7E3DF58526A1D34C00BB22FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		7E3DF58626A1D34C00BB22FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7E3DF58826A1D34C00BB22FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurEx/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurEx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7E3DF58926A1D34C00BB22FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurEx/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurEx;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		7E3DF58B26A1D34C00BB22FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurExTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurExTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurEx.app/CurEx";
+			};
+			name = Debug;
+		};
+		7E3DF58C26A1D34C00BB22FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurExTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurExTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CurEx.app/CurEx";
+			};
+			name = Release;
+		};
+		7E3DF58E26A1D34C00BB22FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurExUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurExUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CurEx;
+			};
+			name = Debug;
+		};
+		7E3DF58F26A1D34C00BB22FB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HNYGRD9K7P;
+				INFOPLIST_FILE = CurExUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = ru.rionix.CurExUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CurEx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		7E3DF55826A1D30D00BB22FB /* Build configuration list for PBXProject "CurEx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E3DF58526A1D34C00BB22FB /* Debug */,
+				7E3DF58626A1D34C00BB22FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E3DF58726A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurEx" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E3DF58826A1D34C00BB22FB /* Debug */,
+				7E3DF58926A1D34C00BB22FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E3DF58A26A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurExTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E3DF58B26A1D34C00BB22FB /* Debug */,
+				7E3DF58C26A1D34C00BB22FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		7E3DF58D26A1D34C00BB22FB /* Build configuration list for PBXNativeTarget "CurExUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7E3DF58E26A1D34C00BB22FB /* Debug */,
+				7E3DF58F26A1D34C00BB22FB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 7E3DF55526A1D30D00BB22FB /* Project object */;
+}
