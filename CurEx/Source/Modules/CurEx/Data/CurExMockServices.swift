@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CurExMockServices: CurExServicesDataSource {
+/*class CurExMockServices: CurExServicesDataSource {
     
     var mockFile: CurExJsonMockType
     
@@ -69,4 +69,4 @@ class MockManager {
             failure(error as NSError)
         }
     }
-}
+}*/

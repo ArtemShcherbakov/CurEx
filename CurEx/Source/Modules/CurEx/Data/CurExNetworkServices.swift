@@ -11,22 +11,24 @@ import UIKit
 class CurExNetworkServices: CurExServicesDataSource {
     
     func getInfo(successful: @escaping (CurExModel) -> (), failure: (NSError) -> ()) {
-        ///simulates a network response
-        let content = CurExResponseModel.Response(text: "Network response")
-        let modelResponse = CurExResponseModel(status: "SUCCESS", content: content, error: nil)
-        if modelResponse.status == "SUCCESS" {
-            if let text = modelResponse.content?.text {
-                let model = CurExModel(CurExModel.Content(text))
-                successful(model)
-            } else {
-                let error = NSError(domain: "ru.destplay.TechDemo", code: 999, userInfo: ["reason": "empty"])
-                failure(error)
+        let url = URL(string: "http://api.exchangeratesapi.io/v1/latest?access_key=c6e1cbaad8bae44363f35914c791f30b&symbols=USD,EUR,GBP&format=1")!
+        var request = URLRequest(url: url)
+        request.httpMethod = "GET"
+        
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            if let data = data {
+                if let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] {
+                    if let rates = json["rates"] as? [String: Double] {
+                        let USD = rates["USD"] ?? 1.0
+                        let EUR = rates["EUR"] ?? 1.0
+                        let GPB = rates["GBP"] ?? 1.0
+                        let model = CurExModel(CurExModel.Content("update", usd: USD, eur: EUR, gbp: GPB))
+                        successful(model)
+                        return
+                    }
+                }
             }
-        } else {
-            guard let responseError = modelResponse.error else { return }
-            let error = NSError(domain: "ru.destplay.TechDemo", code: responseError.code, userInfo: ["reason": responseError.reason])
-            failure(error)
-        }
+            print("Fetch failed: \(error?.localizedDescription ?? "Unknown error")")
+        }.resume()
     }
-    
 }

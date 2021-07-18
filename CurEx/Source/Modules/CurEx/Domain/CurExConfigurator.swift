@@ -13,14 +13,14 @@ class CurExConfigurator {
     private var presenter: CurExPresenterDataSource!
     
     init() {
-        let dataServices = CurExMockServices(.success)
+        //let dataServices = CurExMockServices(.success)
+        let dataServices = CurExNetworkServices()
         let repository = CurExRepository(dataSource: dataServices)
         let interactor = CurExInteractor(dataSource: repository)
         self.presenter = CurExPresenter(dataSource: interactor)
     }
     
     func getDataSource() -> CurExPresenterDataSource {
-        
         return self.presenter
     }
     

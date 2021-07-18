@@ -31,7 +31,22 @@ class CurExPresenter {
 extension CurExPresenter: CurExPresenterDataSource {
     func fetch(objectFor view: CurExViewViewer) {
         self.viewer = view
+        // Вызывается метод интерактора fetch
         self.dataSource?.fetch(objectFor: self)
+    }
+    
+    func swipe(direction: String, block: Int) {
+        print("Swipe \(direction) from block \(block)")
+        if direction == "left" {
+            self.dataSource?.nextCurrency(objectFor: self, block: block)
+        }
+        if direction == "right" {
+            self.dataSource?.previousCurrency(objectFor: self, block: block)
+        }
+    }
+    
+    func fieldChanged(value: String) {
+        self.dataSource?.updateSecondCurrencyValue(objectFor: self, value: value)
     }
 }
 

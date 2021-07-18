@@ -11,15 +11,191 @@ import UIKit
 class CurExView: UIViewController {
 
     private var dataSource: CurExPresenterDataSource?
+    
+    var currencyBlock = UIView()
+    var arrow = UIView()
+    var currencyBlock2 = UIView()
 
-    // MARK: Life cycle
+    override func loadView() {
+        view = UIView()
+        view.backgroundColor = .darkGray
+        
+        let tapGesture = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tapGesture)
+        //tapGesture.cancelsTouchesInView = false
+        navigationItem.title = "Currency"
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Exchange", style: .plain, target: self, action: #selector(tapped))
+        
+        fillCurrencyBlock(labelText: "USD", value: "", walletText: "You have: 100.0$", rateText: "1.0$ = 1.0$", editable: true, field: true)
+        fillArrow()
+        fillCurrencyBlock(labelText: "USD", value: "", walletText: "You have: 100.0$", rateText: "1.0$ = 1.0$", editable: false, field: true)
+
+        view.addSubview(self.currencyBlock)
+        view.addSubview(self.arrow)
+        view.addSubview(self.currencyBlock2)
+        activateCurrencyBlockConstraints()
+        activateArrowConstraints()
+        activateCurrencyBlock2Constraints()
+    }
+    
+    func activateArrowConstraints() {
+        NSLayoutConstraint.activate([
+            arrow.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            arrow.topAnchor.constraint(equalTo: currencyBlock.bottomAnchor, constant: 20),
+            arrow.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1),
+            arrow.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.1)
+        ])
+    }
+    
+    func activateCurrencyBlockConstraints() {
+        NSLayoutConstraint.activate([
+            currencyBlock.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            currencyBlock.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 20),
+            currencyBlock.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            currencyBlock.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2),
+            
+            currencyBlock.subviews[0].topAnchor.constraint(equalTo: currencyBlock.topAnchor, constant: 5),
+            currencyBlock.subviews[0].leadingAnchor.constraint(equalTo: currencyBlock.leadingAnchor, constant: 10),
+            currencyBlock.subviews[1].topAnchor.constraint(equalTo: currencyBlock.topAnchor, constant: 4),
+            currencyBlock.subviews[1].trailingAnchor.constraint(equalTo: currencyBlock.trailingAnchor, constant: -10),
+            currencyBlock.subviews[2].bottomAnchor.constraint(equalTo: currencyBlock.bottomAnchor, constant: -15),
+            currencyBlock.subviews[2].leadingAnchor.constraint(equalTo: currencyBlock.leadingAnchor, constant: 10),
+            currencyBlock.subviews[3].bottomAnchor.constraint(equalTo: currencyBlock.bottomAnchor, constant: -15),
+            currencyBlock.subviews[3].trailingAnchor.constraint(equalTo: currencyBlock.trailingAnchor, constant: -10),
+        ])
+    }
+    
+    func activateCurrencyBlock2Constraints() {
+        NSLayoutConstraint.activate([
+            currencyBlock2.centerXAnchor.constraint(equalTo: view.safeAreaLayoutGuide.centerXAnchor),
+            currencyBlock2.topAnchor.constraint(equalTo: arrow.bottomAnchor, constant: 20),
+            currencyBlock2.widthAnchor.constraint(equalTo: view.safeAreaLayoutGuide.widthAnchor, multiplier: 0.9),
+            currencyBlock2.heightAnchor.constraint(equalTo: view.safeAreaLayoutGuide.heightAnchor, multiplier: 0.2),
+
+            currencyBlock2.subviews[0].topAnchor.constraint(equalTo: currencyBlock2.topAnchor, constant: 5),
+            currencyBlock2.subviews[0].leadingAnchor.constraint(equalTo: currencyBlock2.leadingAnchor, constant: 10),
+            currencyBlock2.subviews[1].topAnchor.constraint(equalTo: currencyBlock2.topAnchor, constant: 4),
+            currencyBlock2.subviews[1].trailingAnchor.constraint(equalTo: currencyBlock2.trailingAnchor, constant: -10),
+            currencyBlock2.subviews[2].bottomAnchor.constraint(equalTo: currencyBlock2.bottomAnchor, constant: -15),
+            currencyBlock2.subviews[2].leadingAnchor.constraint(equalTo: currencyBlock2.leadingAnchor, constant: 10),
+            currencyBlock2.subviews[3].bottomAnchor.constraint(equalTo: currencyBlock2.bottomAnchor, constant: -15),
+            currencyBlock2.subviews[3].trailingAnchor.constraint(equalTo: currencyBlock2.trailingAnchor, constant: -10)
+        ])
+    }
+    
+    func fillArrow() {
+        self.arrow = UIImageView(image: UIImage(named: "arrow.down"))
+        arrow.translatesAutoresizingMaskIntoConstraints = false
+        arrow.tintColor = .white
+    }
+    
+    func fillCurrencyBlock(labelText: String, value: String, walletText: String, rateText: String, editable: Bool, field: Bool) {
+        let block = editable ? self.currencyBlock : self.currencyBlock2
+        // Childs
+        let currencyLabel = UILabel()
+        let exValue = UITextField()
+        let wallet = UILabel()
+        let exRate = UILabel()
+        
+        // Childs modifiers
+        currencyLabel.translatesAutoresizingMaskIntoConstraints = false
+        currencyLabel.text = labelText
+        currencyLabel.textColor = .black
+        currencyLabel.font = UIFont.systemFont(ofSize: 48)
+        block.insertSubview(currencyLabel, at: 0)
+        
+        if field {
+            exValue.text = value
+            exValue.translatesAutoresizingMaskIntoConstraints = false
+            exValue.textColor = editable ? .systemRed : .systemGreen
+            exValue.font = UIFont.systemFont(ofSize: 48)
+            exValue.keyboardType = UIKeyboardType.decimalPad
+            exValue.attributedPlaceholder = NSAttributedString(string: "0.00", attributes: [NSAttributedString.Key.foregroundColor : UIColor.darkGray])
+            exValue.textAlignment = .right
+            exValue.isUserInteractionEnabled = editable ? true : false
+            exValue.addTarget(self, action: #selector(self.textFieldDidChange(_:)), for: .editingChanged)
+            block.addSubview(exValue)
+        }
+        
+        wallet.translatesAutoresizingMaskIntoConstraints = false
+        wallet.text = walletText
+        wallet.textColor = .black
+        wallet.font = UIFont.systemFont(ofSize: 18)
+        block.addSubview(wallet)
+        
+        exRate.translatesAutoresizingMaskIntoConstraints = false
+        exRate.text = rateText
+        exRate.textColor = .black
+        exRate.font = UIFont.systemFont(ofSize: 18)
+        block.addSubview(exRate)
+        
+        // Parent modifiers
+        block.translatesAutoresizingMaskIntoConstraints = false
+        block.backgroundColor = .white
+        block.layer.masksToBounds = true
+        block.layer.cornerRadius = 25
+        block.tag = editable ? 1 : 2
+        
+        // Swipes
+        let leftSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        let rightSwipe = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipes(_:)))
+        leftSwipe.direction = .left
+        rightSwipe.direction = .right
+        block.addGestureRecognizer(leftSwipe)
+        block.addGestureRecognizer(rightSwipe)
+    }
+    
+    func cleanCurrencyBlock(editable: Bool) {
+        if editable {
+            self.currencyBlock.subviews[3].removeFromSuperview()
+            self.currencyBlock.subviews[2].removeFromSuperview()
+            self.currencyBlock.subviews[0].removeFromSuperview()
+        } else {
+            self.currencyBlock2.subviews[3].removeFromSuperview()
+            self.currencyBlock2.subviews[2].removeFromSuperview()
+            self.currencyBlock2.subviews[1].removeFromSuperview()
+            self.currencyBlock2.subviews[0].removeFromSuperview()
+        }
+    }
+    
+    @objc func tapped() {
+        print("Exchange tapped")
+    }
+    
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        self.dataSource?.fieldChanged(value: textField.text!) 
+    }
+    
+    @objc func handleSwipes(_ sender: UISwipeGestureRecognizer)
+    {
+        let block = sender.view!
+        if sender.direction == .left
+        {
+            self.dataSource?.swipe(direction: "left", block: block.tag)
+        }
+        if sender.direction == .right
+        {
+            self.dataSource?.swipe(direction: "right", block: block.tag)
+        }
+    }
+    
+    @objc func updateRates()
+    {
+        self.dataSource?.fetch(objectFor: self)
+    }
+    
+    @objc func defaultTitle()
+    {
+        self.navigationItem.title = "Currency"
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        print("Clean")
-
+        let _ = Timer.scheduledTimer(timeInterval: 30.0, target: self, selector: #selector(updateRates), userInfo: nil, repeats: true)
+        
         self.dataSource = CurExConfigurator().getDataSource()
-        self.dataSource?.fetch(objectFor: self)
+        updateRates()
     }
 
     deinit {
@@ -30,7 +206,27 @@ class CurExView: UIViewController {
 
 extension CurExView: CurExViewViewer {
     func response(_ viewModel: CurExViewModel) {
-        print(viewModel.text)
+        DispatchQueue.main.async {
+            
+            switch viewModel.event {
+            case "next" : print("Следующая валюта активирована")
+            case "previous" : print("Предыдущая валюта активирована")
+            case "value" : print("Введены данные в текстовое поле")
+            case "update" : print("Курсы валют обновлены")
+                let _ = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(self.defaultTitle), userInfo: nil, repeats: false)
+                self.navigationItem.title = "-= Updated =-"
+            default : print("Неизвестное событие")
+            }
+            
+            self.cleanCurrencyBlock(editable: true)
+            self.fillCurrencyBlock(labelText: viewModel.upperCurrency, value: viewModel.upperValue, walletText: viewModel.upperWallet, rateText: viewModel.upperRate, editable: true, field: false)
+            
+            self.cleanCurrencyBlock(editable: false)
+            self.fillCurrencyBlock(labelText: viewModel.lowerCurrency, value: viewModel.lowerValue, walletText: viewModel.lowerWallet, rateText: viewModel.lowerRate, editable: false, field: true)
+            
+            self.activateCurrencyBlockConstraints()
+            self.activateCurrencyBlock2Constraints()
+        }
     }
 
     func response(_ error: NSError) {
