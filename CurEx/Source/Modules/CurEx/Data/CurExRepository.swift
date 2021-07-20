@@ -19,7 +19,6 @@ class CurExRepository {
     deinit {
         print("deinit repository")
     }
-
 }
 
 extension CurExRepository: CurExRepositoryDataSource {

@@ -18,25 +18,21 @@ class CurExPresenter {
     }
 
     private func mappingViewModel(_ model: CurExModel) -> CurExViewModel {
-
         return CurExViewModel(model)
     }
 
     deinit {
         print("deinit presenter")
     }
-
 }
 
 extension CurExPresenter: CurExPresenterDataSource {
     func fetch(objectFor view: CurExViewViewer) {
         self.viewer = view
-        // Вызывается метод интерактора fetch
         self.dataSource?.fetch(objectFor: self)
     }
     
     func swipe(direction: String, block: Int) {
-        print("Swipe \(direction) from block \(block)")
         if direction == "left" {
             self.dataSource?.nextCurrency(objectFor: self, block: block)
         }
@@ -47,6 +43,14 @@ extension CurExPresenter: CurExPresenterDataSource {
     
     func fieldChanged(value: String) {
         self.dataSource?.updateSecondCurrencyValue(objectFor: self, value: value)
+    }
+    
+    func exchangePressed() {
+        self.dataSource?.exchangeCurrency(objectFor: self)
+    }
+    
+    func saveWalletsToUserDefaults() {
+        self.dataSource?.saveWalletsToUserDefaults(objectFor: self)
     }
 }
 

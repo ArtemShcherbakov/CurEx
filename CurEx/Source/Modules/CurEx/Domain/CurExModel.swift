@@ -17,6 +17,8 @@ protocol CurExPresenterDataSource: AnyObject {
     func fetch(objectFor view: CurExViewViewer)
     func swipe(direction: String, block: Int)
     func fieldChanged(value: String)
+    func exchangePressed()
+    func saveWalletsToUserDefaults()
 }
 
 protocol CurExPresenterViewer: AnyObject {
@@ -29,6 +31,9 @@ protocol CurExInteractorDataSource: AnyObject {
     func nextCurrency(objectFor presenter: CurExPresenterViewer, block: Int)
     func previousCurrency(objectFor presenter: CurExPresenterViewer, block: Int)
     func updateSecondCurrencyValue(objectFor presenter: CurExPresenterViewer, value: String)
+    func exchangeCurrency(objectFor presenter: CurExPresenterViewer)
+    func saveWalletsToUserDefaults(objectFor presenter: CurExPresenterViewer)
+    func isConnectedToNetwork() -> Bool
 }
 
 protocol CurExInteractorViewer: AnyObject {
@@ -65,6 +70,9 @@ enum CurExJsonMockType {
 struct CurExViewModel {
     let event: String
     
+    let debited: String
+    let credited: String
+    
     let upperCurrency: String
     let upperValue: String
     let upperWallet: String
@@ -77,6 +85,8 @@ struct CurExViewModel {
     
     init(_ model: CurExModel) {
         self.event = model.content.event
+        self.debited = model.content.debited
+        self.credited = model.content.credited
         
         self.upperCurrency = model.content.upperCurrency
         self.upperValue = model.content.upperValue
@@ -99,12 +109,19 @@ struct CurExModel {
         var eur: Double
         var gbp: Double
         
+        var usdWallet = 100.0
+        var eurWallet = 100.0
+        var gbpWallet = 100.0
+        var upperWallet = 100.0
+        var lowerWallet = 100.0
+        
+        var debited = ""
+        var credited = ""
+        
         var upperCurrency = "USD"
         var lowerCurrency = "USD"
         var upperSymbol = "$"
         var lowerSymbol = "$"
-        var upperWallet = 100.0
-        var lowerWallet = 100.0
         var upperRate = 1.0
         var lowerRate = 1.0
         var upperValue = ""
@@ -115,36 +132,44 @@ struct CurExModel {
             self.usd = usd
             self.eur = eur
             self.gbp = gbp
+            self.getWalletsFromUserDefaults()
+        }
+        
+        mutating func getWalletsFromUserDefaults() {
+            let usdWalletString = UserDefaults.standard.string(forKey: "usdWallet")
+            let eurWalletString = UserDefaults.standard.string(forKey: "eurWallet")
+            let gbpWalletString = UserDefaults.standard.string(forKey: "gbpWallet")
+            self.usdWallet = usdWalletString == nil ? 100.0 : Double(usdWalletString!)!
+            self.eurWallet = eurWalletString == nil ? 100.0 : Double(eurWalletString!)!
+            self.gbpWallet = gbpWalletString == nil ? 100.0 : Double(gbpWalletString!)!
+            upperWallet = usdWallet
+            lowerWallet = usdWallet
         }
         
         mutating func realRates() -> [Double] {
             let upper = self.upperCurrency
             let lower = self.lowerCurrency
-            if upper == "USD" && lower == "EUR" { return [round(100 * (eur / usd)) / 100, round(100 * usd) / 100] }
-            if upper == "USD" && lower == "GBP" { return [round(100 * (gbp / usd)) / 100, round(100 * (usd / gbp)) / 100] }
-            if upper == "EUR" && lower == "USD" { return [round(100 * usd) / 100, round(100 * (eur / usd)) / 100] }
-            if upper == "EUR" && lower == "GBP" { return [round(100 * gbp) / 100, round(100 * (eur / gbp)) / 100] }
-            if upper == "GBP" && lower == "USD" { return [round(100 * (usd / gbp)) / 100, round(100 * (gbp / usd)) / 100] }
-            if upper == "GBP" && lower == "EUR" { return [round(100 * (eur / gbp)) / 100, round(100 * gbp) / 100] }
+            if upper == "EUR" && lower == "USD" { return [rounder(usd), rounder(eur / usd)] }
+            if upper == "EUR" && lower == "GBP" { return [rounder(gbp), rounder(eur / gbp)] }
+            if upper == "USD" && lower == "EUR" { return [rounder(eur / usd), rounder(usd)] }
+            if upper == "USD" && lower == "GBP" { return [rounder(gbp / usd), rounder(usd / gbp)] }
+            if upper == "GBP" && lower == "USD" { return [rounder(usd / gbp), rounder(gbp / usd)] }
+            if upper == "GBP" && lower == "EUR" { return [rounder(eur / gbp), rounder(gbp)] }
             return [1.0, 1.0]
         }
         
         mutating func nextCurrency(block: Int) {
-            if block == 1 {
-                switch self.upperCurrency {
-                    case "USD" : self.upperCurrency = "EUR"; self.upperSymbol = "€";
-                    case "EUR" : self.upperCurrency = "GBP" ; self.upperSymbol = "£"
-                    case "GBP" : self.upperCurrency = "USD" ; self.upperSymbol = "$"
-                    default : self.upperCurrency = "USD"
-                }
-            } else {
-                switch self.lowerCurrency {
-                    case "USD" : self.lowerCurrency = "EUR" ; self.lowerSymbol = "€"
-                    case "EUR" : self.lowerCurrency = "GBP" ; self.lowerSymbol = "£"
-                    case "GBP" : self.lowerCurrency = "USD" ; self.lowerSymbol = "$"
-                    default : self.lowerCurrency = "USD"
-                }
+            var currency = block == 1 ? self.upperCurrency : self.lowerCurrency
+            var symbol = ""
+            var wallet = 0.0
+            switch currency {
+                case "USD" : currency = "EUR"; symbol = "€"; wallet = self.eurWallet
+                case "EUR" : currency = "GBP" ; symbol = "£" ; wallet = self.gbpWallet
+                case "GBP" : currency = "USD" ; symbol = "$" ; wallet = self.usdWallet
+                default : print("Неизвестная валюта")
             }
+            if block == 1 { self.upperCurrency = currency; self.upperSymbol = symbol; self.upperWallet = wallet }
+            if block == 2 { self.lowerCurrency = currency; self.lowerSymbol = symbol; self.lowerWallet = wallet }
             upperRate = self.realRates()[0]
             lowerRate = self.realRates()[1]
             self.updateSecondCurrencyValue(value: self.upperValue)
@@ -152,21 +177,17 @@ struct CurExModel {
         }
         
         mutating func previousCurrency(block: Int) {
-            if block == 1 {
-                switch self.upperCurrency {
-                    case "USD" : self.upperCurrency = "GBP" ; self.upperSymbol = "£"
-                    case "EUR" : self.upperCurrency = "USD" ; self.upperSymbol = "$"
-                    case "GBP" : self.upperCurrency = "EUR" ; self.upperSymbol = "€"
-                    default : self.upperCurrency = "USD"
-                }
-            } else {
-                switch self.lowerCurrency {
-                    case "USD" : self.lowerCurrency = "GBP" ; self.lowerSymbol = "£"
-                    case "EUR" : self.lowerCurrency = "USD" ; self.lowerSymbol = "$"
-                    case "GBP" : self.lowerCurrency = "EUR" ; self.lowerSymbol = "€"
-                    default : self.lowerCurrency = "USD"
-                }
+            var currency = block == 1 ? self.upperCurrency : self.lowerCurrency
+            var symbol = ""
+            var wallet = 0.0
+            switch currency {
+                case "USD" : currency = "GBP" ; symbol = "£" ; wallet = self.gbpWallet
+                case "EUR" : currency = "USD" ; symbol = "$" ; wallet = self.usdWallet
+                case "GBP" : currency = "EUR" ; symbol = "€" ; wallet = self.eurWallet
+                default : print("Неизвестная валюта")
             }
+            if block == 1 { self.upperCurrency = currency; self.upperSymbol = symbol; self.upperWallet = wallet }
+            if block == 2 { self.lowerCurrency = currency; self.lowerSymbol = symbol; self.lowerWallet = wallet }
             upperRate = self.realRates()[0]
             lowerRate = self.realRates()[1]
             self.updateSecondCurrencyValue(value: self.upperValue)
@@ -174,8 +195,10 @@ struct CurExModel {
         }
         
         mutating func updateSecondCurrencyValue(value: String) {
-            let noCommaValue = value.replacingOccurrences(of: ",", with: ".")
-            let secondValue = round(100 * (Double(noCommaValue) ?? 0.00) * upperRate) / 100
+            let formatted = value.count > 5 ?  String(value[..<value.index(value.startIndex, offsetBy: 5)]) : value
+            let noCommaValue = formatted.replacingOccurrences(of: ",", with: ".")
+            let doubleValue = Double(noCommaValue) ?? 0.00
+            let secondValue = rounder(doubleValue * upperRate)
             if secondValue != 0.00 {
                 self.lowerValue = String(secondValue)
             } else {
@@ -183,6 +206,54 @@ struct CurExModel {
             }
             self.upperValue = noCommaValue
             self.event = "value"
+        }
+        
+        mutating func exchangeCurrency() {
+            if upperValue == "" || upperValue == "." || upperValue.components(separatedBy: ".").count > 2  {
+                // Поле пустое или заполнено неправильно
+                self.event = "emptyfield"
+                return
+            }
+            if self.upperWallet < Double(self.upperValue)! {
+                // Недостаточно средств
+                self.event = "nomoney"
+                return
+            }
+            if upperCurrency == lowerCurrency {
+                // Обмен одинаковых валют
+            } else {
+                // Обмен разных валют
+                self.upperWallet = rounder(upperWallet - Double(self.upperValue)!)
+                self.lowerWallet = rounder(lowerWallet + Double(self.lowerValue)!)
+                switch self.upperCurrency {
+                case "USD" : usdWallet = upperWallet
+                case "EUR" : eurWallet = upperWallet
+                case "GBP" : gbpWallet = upperWallet
+                default : print("Неизвестная валюта")
+                }
+                switch self.lowerCurrency {
+                case "USD" : usdWallet = lowerWallet
+                case "EUR" : eurWallet = lowerWallet
+                case "GBP" : gbpWallet = lowerWallet
+                default : print("Неизвестная валюта")
+                }
+            }
+            self.credited = self.upperValue
+            self.debited = self.lowerValue
+            self.upperValue = ""
+            self.lowerValue = ""
+            self.event = "exchange"
+        }
+        
+        mutating func saveWalletsToUserDefaults() {
+            self.event = "background"
+            UserDefaults.standard.set(String(self.usdWallet), forKey: "usdWallet")
+            UserDefaults.standard.set(String(self.eurWallet), forKey: "eurWallet")
+            UserDefaults.standard.set(String(self.gbpWallet), forKey: "gbpWallet")
+        }
+        
+        func rounder(_ value: Double) -> Double {
+            return round(100 * value) / 100
         }
     }
     

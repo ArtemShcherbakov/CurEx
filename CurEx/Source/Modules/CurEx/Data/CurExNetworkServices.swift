@@ -11,7 +11,7 @@ import UIKit
 class CurExNetworkServices: CurExServicesDataSource {
     
     func getInfo(successful: @escaping (CurExModel) -> (), failure: (NSError) -> ()) {
-        let url = URL(string: "http://api.exchangeratesapi.io/v1/latest?access_key=c6e1cbaad8bae44363f35914c791f30b&symbols=USD,EUR,GBP&format=1")!
+        let url = URL(string: "http://api.exchangeratesapi.io/v1/latest?access_key=ba64b271b8073b73287ee6857a98771e&symbols=USD,EUR,GBP&format=1")!
         var request = URLRequest(url: url)
         request.httpMethod = "GET"
         
