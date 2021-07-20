@@ -99,7 +99,7 @@ extension CurExInteractor: CurExInteractorDataSource {
     }
     func isConnectedToNetwork() -> Bool {
         // В своих проектах я обычно использовал Network, но он работает только начиная с iOS 12
-        // Поэтому я нагуглил и применил это решение, чтобы не было крэша при отсутствии интернета
+        // Поэтому я нагуглил и применил это решение, чтобы сообщить пользователю об отсутствии интернета
         var zeroAddress = sockaddr_in(sin_len: 0, sin_family: 0, sin_port: 0, sin_addr: in_addr(s_addr: 0), sin_zero: (0, 0, 0, 0, 0, 0, 0, 0))
         zeroAddress.sin_len = UInt8(MemoryLayout.size(ofValue: zeroAddress))
         zeroAddress.sin_family = sa_family_t(AF_INET)

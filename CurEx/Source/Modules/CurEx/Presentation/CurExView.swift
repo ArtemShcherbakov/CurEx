@@ -282,9 +282,9 @@ class CurExView: UIViewController {
         self.dataSource = CurExConfigurator().getDataSource()
         self.dataSource?.fetch(objectFor: self)
         // Обновляем курсы валют каждые 30 секунд
-        /*Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
+        Timer.scheduledTimer(withTimeInterval: 30.0, repeats: true) { timer in
             self.dataSource?.fetch(objectFor: self)
-        }*/
+        }
     }
 
     deinit {
